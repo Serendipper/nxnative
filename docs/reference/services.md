@@ -321,6 +321,13 @@ Most service calls can be found before they crash, before the first boot or the 
 - **Fix:** the Poké Ball Plus calls (`hid::*Palma*`, 26 functions) answer that none is connected: no npad has the Palma style, so the game never gets a connection handle, and every call on a handle fails (`hle_hid.c`).
 - **Found on:** [Pokémon Sword](../../dm/games/0100ABF008968000/README.md) (SDK 7).
 
+### Bluetooth LE accessories reported absent
+
+- **Symptom:** `[RED] sf: the game connects to service bt itself` early in `nnMain`, then an abort in `nn::bluetooth::hal::user::InitializeBluetoothUserInterface`; with `InitializeBle` answered, the next abort is in `btm::user::AcquireBleScanEvent`.
+- **Cause:** the game sets up Bluetooth LE for an accessory (Scarlet 4.0.0: the Pokémon GO Plus +, `InitializeBle` at `main+0xa0b02c`, then the five `AcquireBle…Event` calls), and the SDK's client opens the `bt` and `btm` services, which the host does not have.
+- **Fix:** the `nn::bluetooth` entry points that reach `bt` / `btm` answer that no accessory is present (`hle_bluetooth.c`): `InitializeBle` does nothing, the events are bound and never fire, a scan starts and finds nothing, connecting and GATT operations fail. The `GattService` / `GattCharacteristic` / `GattDescriptor` getters only touch the game's memory and stay in the SDK.
+- **Found on:** [Pokémon Scarlet](../../dm/games/0100A3D008C5C000/README.md) 4.0.0 (SDK 13.3.13).
+
 ### IR camera reported unconnected
 
 - **Symptom:** undefined `irsensor` imports found from the import list ([Listing a game's unhooked imports before they are met](#listing-a-games-unhooked-imports-before-they-are-met)).

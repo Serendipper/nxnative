@@ -9,4 +9,9 @@ CUTS = {
     'ca44e7dd62e61a2a4e8889b3319ae173': [
         (0x12df074, '6200c0d2', '2200c0d2', 'StandardAllocator::Initialize(nullptr, size): virtual address space 12 GB → 4 GB'),
     ],
+    # 4.0.0: the same request, (nullptr, 0x300000000, false) from the call at
+    # main+0x167d554; the abort's backtrace passes main+0x167d558.
+    '421c5411b487eb4d049dd065fec95477': [
+        (0x167d54c, '6200c0d2', '2200c0d2', 'StandardAllocator::Initialize(nullptr, size): virtual address space 12 GB → 4 GB'),
+    ],
 }
