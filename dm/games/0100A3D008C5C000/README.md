@@ -245,4 +245,6 @@ existing [per-depth-mode entry-point mechanism](../../../docs/reference/shaders.
 - [Maps past the application pool fail as on Horizon](../../../docs/reference/memory.md#maps-past-the-application-pool-fail-as-on-horizon).
 - [Conservative rasterization remains unimplemented](../../../docs/reference/rendering.md#conservative-rasterization-remains-unimplemented).
 - [Bluetooth LE accessories reported absent](../../../docs/reference/services.md#bluetooth-le-accessories-reported-absent) (4.0.0).
+- [Nintendo controllers' face buttons on the Mac](../../../docs/reference/services.md#nintendo-controllers-face-buttons-on-the-mac).
+- [Pro Controller sticks missing from GameController](../../../docs/reference/services.md#pro-controller-sticks-missing-from-gamecontroller).
 - [Metal's build folders left by pipeline archive flushes](../../../docs/reference/shaders.md#metals-build-folders-left-by-pipeline-archive-flushes).
